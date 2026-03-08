@@ -3,42 +3,42 @@
     name: common
     tasks: app-setup.yaml
 
-- name: app_setup
-  ansible.bulitin.import_roles:
-    name: common
-    tasks: nodejs-setup.yaml
+# - name: app_setup
+#   ansible.bulitin.import_roles:
+#     name: common
+#     tasks: nodejs-setup.yaml
 
-- name: app_setup
-  ansible.bulitin.import_roles:
-    name: common
-    tasks: systemd-setup.yaml
-
-
-- name: Copy file to mongo.repo
-  ansible.builtin.template:
-    src: mongo.repo
-    dest: /etc/yum.repos.d/mongo.repo
-
-- name: Install mongodb-mongosh
-  ansible.builtin.dnf:
-    name: mongodb-mongosh
-    state: present
-
-- name: Load MongoDB master data
-  ansible.builtin.command: mongosh --host "{{ MONGODB_HOST }}" --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
-  register: catalogue_output
+# - name: app_setup
+#   ansible.bulitin.import_roles:
+#     name: common
+#     tasks: systemd-setup.yaml
 
 
-- name:  check data is loaded into mongodb or not Connect to MongoDB
-  ansible.builtin.shell: mongosh --host "{{ MONGODB_HOST }}"  </app/db/master-data.js
-  when: catalogue_output.stdout | int < 0
+# - name: Copy file to mongo.repo
+#   ansible.builtin.template:
+#     src: mongo.repo
+#     dest: /etc/yum.repos.d/mongo.repo
 
-- name: demon-reload
-  ansible.builtin.systemd_service:
-    daemon_reload: true
+# - name: Install mongodb-mongosh
+#   ansible.builtin.dnf:
+#     name: mongodb-mongosh
+#     state: present
 
-- name: Start service catalogue
-  ansible.builtin.service:
-    name: catalogue
-    enabled: yes
-    state: restarted
+# - name: Load MongoDB master data
+#   ansible.builtin.command: mongosh --host "{{ MONGODB_HOST }}" --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+#   register: catalogue_output
+
+
+# - name:  check data is loaded into mongodb or not Connect to MongoDB
+#   ansible.builtin.shell: mongosh --host "{{ MONGODB_HOST }}"  </app/db/master-data.js
+#   when: catalogue_output.stdout | int < 0
+
+# - name: demon-reload
+#   ansible.builtin.systemd_service:
+#     daemon_reload: true
+
+# - name: Start service catalogue
+#   ansible.builtin.service:
+#     name: catalogue
+#     enabled: yes
+#     state: restarted
