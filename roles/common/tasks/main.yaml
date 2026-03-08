@@ -1,0 +1,3 @@
+- name: test
+  ansible.bulitin.debug:
+    msg: "helo test"
