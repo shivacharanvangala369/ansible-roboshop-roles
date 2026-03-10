@@ -6,12 +6,12 @@
 - name: app_setup
   ansible.builtin.import_role:
     name: common
-    tasks: nodejs-setup.yaml
+    tasks_from: nodejs-setup.yaml
 
 - name: app_setup
   ansible.builtin.import_role:
     name: common
-    tasks: systemd-setup.yaml
+    tasks_from: systemd-setup.yaml
 
 
 - name: Copy file to mongo.repo
