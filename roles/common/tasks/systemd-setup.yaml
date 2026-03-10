@@ -1,6 +1,6 @@
 - name: Copy file to catalogue.service
   ansible.builtin.copy:
-    src: "{{ component }}.j2.service"
+    src: "{{ component }}.service.j2"
     dest: "/etc/systemd/system/{{ component }}.service"
 
 - name: demon-reload
