@@ -1,12 +1,12 @@
 - name: app_setup
   ansible.builtin.import_role:
-  name: common
-  tasks_from: app-setup.yaml
+    name: common
+    tasks_from: app-setup.yaml
 
-  - name: Python_setup
+- name: Python_setup
   ansible.builtin.import_role:
-  name: common
-  tasks_from: python-setup.yaml
+    name: common
+    tasks_from: python-setup.yaml
 
 
 - name: Copy file to payment.service
