@@ -1,14 +1,23 @@
 - name: app_setup
+  tags:
+  - deployment
   ansible.builtin.import_role:
     name: common
     tasks_from: app-setup.yaml
 
-- name: app_setup
+- name: nodejs_setup
   ansible.builtin.import_role:
     name: common
     tasks_from: nodejs-setup.yaml
 
-- name: app_setup
+# - name: nodejs_setup
+#   tags:
+#   - deployment                           # include role will not respact the tags
+#   ansible.builtin.include_role:
+#     name: common
+#     tasks_from: nodejs-setup.yaml
+
+- name: systemd-setup
   ansible.builtin.import_role:
     name: common
     tasks_from: systemd-setup.yaml
