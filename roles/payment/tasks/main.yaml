@@ -8,11 +8,10 @@
     name: common
     tasks_from: python-setup.yaml
 
-
-- name: Copy file to payment.service
-  ansible.builtin.template:
-    src: payment.service
-    dest: /etc/systemd/system/payment.service
+- name: app_setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd-setup.yaml
 
 - name: demon-reload
   ansible.builtin.systemd_service:
