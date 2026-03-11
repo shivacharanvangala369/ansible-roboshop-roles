@@ -3,12 +3,12 @@
     name: common
     tasks_from: app-setup.yaml
 
-- name: app_setup
+- name: nodejs-setup
   ansible.builtin.import_role:
     name: common
     tasks_from: nodejs-setup.yaml
 
-- name: app_setup
+- name: systemd-setup
   ansible.builtin.import_role:
     name: common
     tasks_from: systemd-setup.yaml
