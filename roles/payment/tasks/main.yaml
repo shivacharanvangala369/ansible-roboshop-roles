@@ -13,10 +13,6 @@
     name: common
     tasks_from: systemd-setup.yaml
 
-- name: demon-reload
-  ansible.builtin.systemd_service:
-    daemon_reload: true
-
 - name: Start service payment
   ansible.builtin.service:
     name: payment
