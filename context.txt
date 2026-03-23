@@ -21,4 +21,4 @@ ansible-vault view vault.yaml
 ansible-vault edit vault.yaml
 fork
 serial
-throtell
+throtell    
